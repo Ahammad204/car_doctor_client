@@ -7,7 +7,7 @@ const Bookings = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([])
 
-    const url = `http://localhost:5000/booking?email=${user?.email}`
+    const url = `https://car-doctor-server-one-rosy.vercel.app/booking?email=${user?.email}`
     useEffect(() => {
 
         fetch(url)
@@ -26,7 +26,7 @@ const Bookings = () => {
         const proceed = confirm('Are You Sure you want to delete')
         if(proceed){
 
-            fetch(`http://localhost:5000/booking/${id}`,{
+            fetch(`https://car-doctor-server-one-rosy.vercel.app/booking/${id}`,{
 
             method:'DELETE'
 
@@ -52,7 +52,7 @@ const Bookings = () => {
 
     const handleConfirm = id => {
 
-        fetch(`http://localhost:5000/booking/${id}`,{
+        fetch(`https://car-doctor-server-one-rosy.vercel.app/booking/${id}`,{
 
         method:'PATCH',
         headers:{

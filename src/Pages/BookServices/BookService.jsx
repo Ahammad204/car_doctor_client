@@ -33,7 +33,7 @@ const BookService = () => {
 
         console.log(order)
 
-        fetch('http://localhost:5000/booking',{
+        fetch('https://car-doctor-server-one-rosy.vercel.app/booking',{
 
             method: 'POST',
             headers:{
