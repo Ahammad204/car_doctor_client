@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 
 const ServiceCard = ({ service }) => {
 
-    const { title, img, price } = service || {}
+    const { _id,title, img, price } = service || {}
 
     return (
         <div>
@@ -15,7 +17,7 @@ const ServiceCard = ({ service }) => {
                     <h2 className="card-title">{title}</h2>
                     <p className="text-xl text-[#FF3811]">Price: $ {price}</p>
                     <div className="card-actions">
-                        <button className="btn text-white bg-[#FF3811] hover:bg-[#FF3811] ">Buy Now</button>
+                       <Link to={`/checkout/${_id}`}> <button className="btn text-white bg-[#FF3811] hover:bg-[#FF3811] ">Book Now</button></Link>
                     </div>
                 </div>
             </div>
