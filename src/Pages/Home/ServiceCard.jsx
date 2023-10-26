@@ -15,7 +15,7 @@ const ServiceCard = ({ service }) => {
                     <h2 className="card-title">{title}</h2>
                     <p className="text-xl text-[#FF3811]">Price: $ {price}</p>
                     <div className="card-actions">
-                        <button className="btn btn-primary">Buy Now</button>
+                        <button className="btn text-white bg-[#FF3811] hover:bg-[#FF3811] ">Buy Now</button>
                     </div>
                 </div>
             </div>
