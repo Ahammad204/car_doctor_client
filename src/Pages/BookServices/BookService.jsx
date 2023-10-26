@@ -47,7 +47,7 @@ const BookService = () => {
         .then(data => {
 
             console.log(data);
-            if(date.insertedId){
+            if(date){
 
                 alert('Add Service successfully');
 
