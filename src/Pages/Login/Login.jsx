@@ -1,11 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import login from '../../assets/images/login/login.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
+import axios from 'axios';
 
 const Login = () => {
 
     const { signIn } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate()
 
     const handleLogin = (event) => {
 
@@ -14,20 +17,32 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email,password);
+        console.log(email, password);
 
-        signIn(email,password)
-        .then(result => {
+        signIn(email, password)
+            .then(result => {
 
-            const user = result.user;
-            console.log(user);
+                const loginUser = result.user;
+                console.log(loginUser);
+                const user = { email }
+                // navigate(location?.state? location?.state:'/')
+                // Get access token
+                axios.post('http://localhost:5000/jwt',user)
+                .then (res =>console.log(res.data))
+                .catch(error => {
 
-        })
-        .catch(error => {
+                    console.log(error)
 
-            console.error(error);
+                })
 
-        })
+
+
+            })
+            .catch(error => {
+
+                console.error(error);
+
+            })
 
     }
 
@@ -36,12 +51,12 @@ const Login = () => {
             <div className="hero min-h-screen">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="mr-12 w-1/2">
-                       
+
                         <img src={login} alt="" />
                     </div>
                     <div className="card flex-shrink-0  w-full max-w-sm shadow-2xl bg-base-100">
                         <form onSubmit={handleLogin} className="card-body">
-                        <h1 className="text-3xl text-center font-bold">Login now!</h1>
+                            <h1 className="text-3xl text-center font-bold">Login now!</h1>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -58,7 +73,7 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                               
+
                                 <input className="btn bg-[#FF3811] hover:bg-[#FF3811] text-white" type="submit" value="Login" />
                             </div>
                             <p className='my-4 text-center'>New to Car Doctors?  <Link to="/signup" className='text-[#FF3811] font-bold'>Sign Up</Link></p>
