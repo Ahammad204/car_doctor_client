@@ -1,35 +1,42 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import BookingRow from "./BookingRow";
-import axios from "axios";
+// import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Bookings = () => {
 
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([])
+    const axiosSecure = useAxiosSecure();
 
     // const url = `https://car-doctor-server-one-rosy.vercel.app/booking?email=${user?.email}`
-    const url = `http://localhost:5000/booking?email=${user?.email}`
+    // const url = `http://localhost:5000/booking?email=${user?.email}`
+    const url = `/booking?email=${user?.email}`
     useEffect(() => {
 
-        axios.get(url,{withCredentials:true})
-        .then(res => {
+/*         axios.get(url, { withCredentials: true })
+            .then(res => {
 
-            setBookings(res.data)
-
-        })
-
-
-       /*  fetch(url)
-            .then(res => res.json())
-            .then(data => {
-
-                console.log(data)
-                setBookings(data)
+                setBookings(res.data)
 
             }) */
 
-    }, [url]);
+
+        /*  fetch(url)
+             .then(res => res.json())
+             .then(data => {
+ 
+                 console.log(data)
+                 setBookings(data)
+ 
+             }) */
+
+             axiosSecure.get(url)
+             .then(res => setBookings(res.data))
+
+
+    }, [url,axiosSecure]);
 
     const handleDelete = id => {
 

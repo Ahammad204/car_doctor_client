@@ -1,43 +1,45 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg"
-import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
+import useAuth from "../../Hooks/useAuth";
+/* import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider"; */
 
 
 const Navbar = () => {
 
-    const {user,logout} = useContext(AuthContext);
+    // const {user,logout} = useContext(AuthContext);
+    const { user, logout } = useAuth()
 
     const handleLogout = () => {
 
         logout()
-        .then(()=> {})
-        .catch( error => {
+            .then(() => { })
+            .catch(error => {
 
-            console.log(error)
+                console.log(error)
 
-        })
+            })
 
-    } 
+    }
 
 
     const navItems = <>
 
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
-    { user?.email? <>
-    
-    <li><Link to="/booking">My Bookings</Link></li> 
-    <li><button onClick={handleLogout} >Log out</button></li> 
+        {user?.email ? <>
+
+            <li><Link to="/booking">My Bookings</Link></li>
+            <li><button onClick={handleLogout} >Log out</button></li>
 
 
-    
-    </> : 
-    
-    <li><Link to="/login">Log in</Link></li>
+
+        </> :
+
+            <li><Link to="/login">Log in</Link></li>
 
 
-    }
+        }
 
     </>
 
@@ -61,11 +63,11 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                            {navItems}
+                        {navItems}
                     </ul>
                 </div>
                 <div className="navbar-end">
-                <button className="btn btn-outline text-[#FF3811] hover:text-[#FF3811] hover:bg-transparent">Appointment</button>
+                    <button className="btn btn-outline text-[#FF3811] hover:text-[#FF3811] hover:bg-transparent">Appointment</button>
                 </div>
             </div>
         </div>
