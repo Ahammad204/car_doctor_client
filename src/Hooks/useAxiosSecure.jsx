@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 
-const axiosSecure = axios.create({
+export const axiosSecure = axios.create({
 
     baseURL: 'https://car-doctor-server-one-rosy.vercel.app',
     withCredentials: true
@@ -46,7 +46,7 @@ const useAxiosSecure = () => {
         })
 
 
-    }, [])
+    }, [logout, navigate])
 
     return axiosSecure;
 

@@ -3,6 +3,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import BookingRow from "./BookingRow";
 // import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import axios from "axios";
 
 const Bookings = () => {
 
@@ -10,17 +11,17 @@ const Bookings = () => {
     const [bookings, setBookings] = useState([])
     const axiosSecure = useAxiosSecure();
 
-    // const url = `https://car-doctor-server-one-rosy.vercel.app/booking?email=${user?.email}`
+    const url = `https://car-doctor-server-one-rosy.vercel.app/booking?email=${user?.email}`
     // const url = `http://localhost:5000/booking?email=${user?.email}`
-    const url = `/booking?email=${user?.email}`
+    // const url = `/booking?email=${user?.email}`
     useEffect(() => {
 
-/*         axios.get(url, { withCredentials: true })
+        axios.get(url, { withCredentials: true })
             .then(res => {
 
                 setBookings(res.data)
 
-            }) */
+            }) 
 
 
         /*  fetch(url)
@@ -32,8 +33,8 @@ const Bookings = () => {
  
              }) */
 
-             axiosSecure.get(url)
-             .then(res => setBookings(res.data))
+   /*           axiosSecure.get(url)
+             .then(res => setBookings(res.data)) */
 
 
     }, [url,axiosSecure]);
